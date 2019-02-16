@@ -18,13 +18,11 @@ class LoginPageState extends State<LoginPage> {
         child: ListView(
           children: <Widget>[
             Container(
-              child: Image.asset("resources/Tulips.jpg",),
+              child: Image.asset(
+                "resources/Tulips.jpg",
+              ),
               padding: EdgeInsets.fromLTRB(70.0, 30.0, 70.0, 0.0),
             ),
-            // Image.asset(
-            //   "resources/Tulips.jpg",
-            //   height: 200,
-            // ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "User ID",
@@ -67,13 +65,26 @@ class LoginPageState extends State<LoginPage> {
                 }
               },
             ),
-            FlatButton(
-              child: Text("Register New Account"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, '/RegisterPage');
-              },
-            )
+            Container(
+              alignment: Alignment.centerRight,
+              child: ButtonTheme(
+                padding: EdgeInsets.all(10),
+                child: FlatButton(
+                  child: Text("Register New Account"),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/RegisterPage');
+                  },
+                ),
+              ),
+            ),
+            // FlatButton(
+            //   child: Text("Register New Account"),
+            //   textColor: Colors.blue,
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/RegisterPage');
+            //   },
+            // )
           ],
         ),
       ),
