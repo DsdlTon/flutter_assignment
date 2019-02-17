@@ -9,12 +9,23 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-
   @override
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text("User นี้มีอยู่ในระบบแล้ว"),
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title :Text("REGISTER"),
+        title: Text("REGISTER"),
       ),
       body: Form(
         key: _formKey,
@@ -28,11 +39,11 @@ class RegisterPageState extends State<RegisterPage> {
               ),
               keyboardType: TextInputType.emailAddress,
               onSaved: (value) => print(value),
-              validator: (value){
-                if(value.isEmpty){
+              validator: (value) {
+                if (value.isEmpty) {
                   return "กรุณาระบุข้อมูลให้ครบถ้วน";
                 } else if (value == "admin") {
-                  return "user นี้มีอยู่ในระบบแล้ว";
+                  _showDialog();
                 }
               },
             ),
@@ -45,8 +56,8 @@ class RegisterPageState extends State<RegisterPage> {
               keyboardType: TextInputType.text,
               obscureText: true,
               onSaved: (value) => print(value),
-              validator: (value){
-                if(value.isEmpty){
+              validator: (value) {
+                if (value.isEmpty) {
                   return "กรุณาระบุข้อมูลให้ครบถ้วน";
                 }
               },
@@ -60,15 +71,15 @@ class RegisterPageState extends State<RegisterPage> {
               keyboardType: TextInputType.text,
               obscureText: true,
               onSaved: (value) => print(value),
-              validator: (value){
-                if(value.isEmpty){
+              validator: (value) {
+                if (value.isEmpty) {
                   return "กรุณาระบุข้อมูลให้ครบถ้วน";
                 }
               },
             ),
             RaisedButton(
               child: Text("CONTINUE"),
-              onPressed: (){
+              onPressed: () {
                 if (_formKey.currentState.validate() == true) {
                   Navigator.pop(context);
                 }
@@ -80,11 +91,6 @@ class RegisterPageState extends State<RegisterPage> {
     );
   }
 }
-
-
-
-
-
 
 // import 'package:flutter/material.dart';
 
@@ -166,5 +172,3 @@ class RegisterPageState extends State<RegisterPage> {
 //     );
 //   }
 // }
-
- 

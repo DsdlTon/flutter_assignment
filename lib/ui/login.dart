@@ -9,8 +9,18 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
   @override
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text("User or Password ไม่ถูกต้อง"),
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -35,7 +45,7 @@ class LoginPageState extends State<LoginPage> {
                 if (value.isEmpty) {
                   return "Please input value";
                 } else if (value == "admin") {
-                  return "user or password ไม่ถูกต้อง";
+                  _showDialog();
                 }
               },
             ),
@@ -52,18 +62,23 @@ class LoginPageState extends State<LoginPage> {
                 if (value.isEmpty) {
                   return "Please input value";
                 } else if (value == "admin") {
-                  return "user or password ไม่ถูกต้อง";
+                  _showDialog();
                 }
               },
             ),
-            RaisedButton(
-              child: Text("LOGIN"),
-              onPressed: () {
-                // _formKey.currentState.validate();
-                if (_formKey.currentState.validate() == true) {
-                  Navigator.pushNamed(context, '/HomePage');
-                }
-              },
+            Container(
+              // child: ButtonTheme(
+              //   padding: EdgeInsets.all(10),
+              //   buttonColor: Colors.blueGrey,
+                child: RaisedButton(
+                  child: Text("LOGIN"),
+                  onPressed: () {
+                    if (_formKey.currentState.validate() == true) {
+                      Navigator.pushNamed(context, '/HomePage');
+                    }
+                  },
+                ),
+              // ),
             ),
             Container(
               alignment: Alignment.centerRight,
@@ -78,90 +93,9 @@ class LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            // FlatButton(
-            //   child: Text("Register New Account"),
-            //   textColor: Colors.blue,
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/RegisterPage');
-            //   },
-            // )
           ],
         ),
       ),
     );
   }
 }
-
-// class _MyLoginState extends State<MyApp> {
-//   final _formKey = GlobalKey<FormState>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Assignment',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       routes: {
-//         '/RegisterPage': (context) => RegisterPage(),
-//         '/HomePage': (context) => HomePage(),
-//       },
-//       home: Scaffold(
-//         body: Form(
-//           key: _formKey,
-//           child: ListView(
-//             children: <Widget>[
-//               Image.asset(
-//                 "resources/Tulips.jpg",
-//                 height: 200,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(
-//                   labelText: "Email",
-//                   hintText: "Please input your email",
-//                   icon: Icon(Icons.email),
-//                 ),
-//                 keyboardType: TextInputType.emailAddress,
-//                 onSaved: (value) => print(value),
-//                 validator: (value) {
-//                   if (value.isEmpty) {
-//                     return "Please input value";
-//                   }
-//                 },
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(
-//                   labelText: "Password",
-//                   hintText: "Please input your password",
-//                   icon: Icon(Icons.lock),
-//                 ),
-//                 keyboardType: TextInputType.text,
-//                 obscureText: true,
-//                 onSaved: (value) => print(value),
-//                 validator: (value) {
-//                   if (value.isEmpty) {
-//                     return "Please input value";
-//                   }
-//                 },
-//               ),
-//               RaisedButton(
-//                 child: Text("LOGIN"),
-//                 onPressed: () {
-//                   // _formKey.currentState.validate();
-//                   Navigator.pushNamed(context,'/HomePage');
-//                 },
-//               ),
-//               FlatButton(
-//                 child: Text("Register New Account"),
-//                 textColor: Colors.blue,
-//                 onPressed: () {
-//                   Navigator.pushNamed(context,'/RegisterPage');
-//                 },
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
