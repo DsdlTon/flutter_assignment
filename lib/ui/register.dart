@@ -10,7 +10,6 @@ class RegisterPage extends StatefulWidget {
 class RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   @override
-
   void _showDialog() {
     showDialog(
       context: context,
@@ -31,59 +30,71 @@ class RegisterPageState extends State<RegisterPage> {
         key: _formKey,
         child: ListView(
           children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Please input your email",
-                icon: Icon(Icons.email),
+            Container(
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  hintText: "Please input your email",
+                  icon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (value) => print(value),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "กรุณาระบุข้อมูลให้ครบถ้วน";
+                  } else if (value == "admin") {
+                    _showDialog();
+                  }
+                },
               ),
-              keyboardType: TextInputType.emailAddress,
-              onSaved: (value) => print(value),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "กรุณาระบุข้อมูลให้ครบถ้วน";
-                } else if (value == "admin") {
-                  _showDialog();
-                }
-              },
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: "Please input your password",
-                icon: Icon(Icons.lock),
+            Container(
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  hintText: "Please input your password",
+                  icon: Icon(Icons.lock),
+                ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onSaved: (value) => print(value),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "กรุณาระบุข้อมูลให้ครบถ้วน";
+                  }
+                },
               ),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              onSaved: (value) => print(value),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "กรุณาระบุข้อมูลให้ครบถ้วน";
-                }
-              },
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Confirm YourPassword",
-                hintText: "Please confirm your password",
-                icon: Icon(Icons.lock),
+            Container(
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Confirm YourPassword",
+                  hintText: "Please confirm your password",
+                  icon: Icon(Icons.lock),
+                ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onSaved: (value) => print(value),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "กรุณาระบุข้อมูลให้ครบถ้วน";
+                  }
+                },
               ),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              onSaved: (value) => print(value),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "กรุณาระบุข้อมูลให้ครบถ้วน";
-                }
-              },
             ),
-            RaisedButton(
-              child: Text("CONTINUE"),
-              onPressed: () {
-                if (_formKey.currentState.validate() == true) {
-                  Navigator.pop(context);
-                }
-              },
+            Container(
+              margin: const EdgeInsets.only(left: 30, right: 30, top: 30),
+              child: RaisedButton(
+                child: Text("CONTINUE"),
+                onPressed: () {
+                  if (_formKey.currentState.validate() == true) {
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             )
           ],
         ),

@@ -33,57 +33,61 @@ class LoginPageState extends State<LoginPage> {
               ),
               padding: EdgeInsets.fromLTRB(70.0, 30.0, 70.0, 0.0),
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "User ID",
-                hintText: "Please input your User Id",
-                icon: Icon(Icons.email),
+            Container(
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "User ID",
+                  hintText: "Please input your User Id",
+                  icon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.text,
+                onSaved: (value) => print(value),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please input value";
+                  } else if (value == "admin") {
+                    _showDialog();
+                  }
+                },
               ),
-              keyboardType: TextInputType.text,
-              onSaved: (value) => print(value),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Please input value";
-                } else if (value == "admin") {
-                  _showDialog();
-                }
-              },
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: "Please input your password",
-                icon: Icon(Icons.lock),
-              ),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              onSaved: (value) => print(value),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Please input value";
-                } else if (value == "admin") {
-                  _showDialog();
-                }
-              },
             ),
             Container(
-              // child: ButtonTheme(
-              //   padding: EdgeInsets.all(10),
-              //   buttonColor: Colors.blueGrey,
-                child: RaisedButton(
-                  child: Text("LOGIN"),
-                  onPressed: () {
-                    if (_formKey.currentState.validate() == true) {
-                      Navigator.pushNamed(context, '/HomePage');
-                    }
-                  },
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  hintText: "Please input your password",
+                  icon: Icon(Icons.lock),
                 ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                onSaved: (value) => print(value),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please input value";
+                  } else if (value == "admin") {
+                    _showDialog();
+                  }
+                },
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 30, left: 30, right: 30),
+              child: RaisedButton(
+                child: Text("LOGIN"),
+                onPressed: () {
+                  if (_formKey.currentState.validate() == true) {
+                    Navigator.pushNamed(context, '/HomePage');
+                  }
+                },
+              ),
               // ),
             ),
             Container(
               alignment: Alignment.centerRight,
               child: ButtonTheme(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(right: 30),
                 child: FlatButton(
                   child: Text("Register New Account"),
                   textColor: Colors.blue,
